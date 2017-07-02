@@ -1,0 +1,18 @@
+1) Install MYSQL on your host machine and enter corresponding credentials in properties file given in the folder walkin
+2) Install python version 2.7
+3) Install MySQLdb python package
+4) Setup environment for sending mail as mentioned in https://github.com/sendgrid/sendgrid-python
+You will be asked to make an account if not already exists and generate an API key. Using that API key, run the following commands:
+# echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+# echo "sendgrid.env" >> .gitignore
+# source ./sendgrid.env
+5) For scheduler, install package apscheduler
+6) The properties file conatins a variable 'RESTAURANT_ID', in which you can provide id of the restaurant of your choice
+7) EMAIL_THRESHOLD is the threshold for 'negativity' after which email will be sent to the user. This can be specified by user. The higher the thresold, the 'more negative' a reviews needs to be, for email to get sent. The default value set is set to be 30
+8) USER_KEY in properties file is the key you need to specify to use Zomato APIs. It can be generated from their developer's page: https://developers.zomato.com/api
+9) EMAIL_TO is the sender's email id from whose account email will be sent in case of a negative review
+10) EMAIL_FROM is the email id which receives negative email notification
+11) HOURS is used for scheduling purpose. Specify in number as to after how many hours the script should run again. By default I have kept it as 6
+12) generateSummaryReport.py is the script which generates report based on reviews stored in database. I have generated one report as summaryReport but as ZOmato API gives only 5 latest reviews, it has the latest 5 for now for restaurant "Diggin" with RESTAURANT_ID = 307113
+13) IS_PERIODIC is by default set to be 0. This means that the script won't run periodically. To do so, just set it to 1. This will run the sccript at interval of every HOURS hrs
+14) Import the database dump "walkin.sql" provided in walkin folder to MySQL
